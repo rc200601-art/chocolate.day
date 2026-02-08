@@ -2,16 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
 }
 
+/* ===== PAGE ===== */
 body {
-  background: radial-gradient(circle at top, #2b0f0a, #120605);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  background: radial-gradient(circle at top, #2b0f0a, #120605);
+  color: #fff;
 }
 
 .scene {
@@ -19,17 +20,18 @@ body {
   text-align: center;
 }
 
-/* ===== 3D CHOCOLATE ===== */
+/* ===== CHOCOLATE 3D ===== */
 .chocolate-3d {
   width: 260px;
   height: 150px;
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateX(18deg) rotateY(-18deg);
-  cursor: pointer;
+  transform: rotateX(16deg) rotateY(-16deg);
   margin: auto;
+  cursor: pointer;
 }
 
+/* TOP FACE */
 .top {
   position: absolute;
   inset: 0;
@@ -39,7 +41,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   padding: 12px;
-  box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.55);
 }
 
 .top span {
@@ -47,8 +49,8 @@ body {
   border-radius: 10px;
   box-shadow:
     inset 0 4px 6px rgba(255,255,255,0.15),
-    inset 0 -4px 6px rgba(0,0,0,0.4);
-  transition: 0.35s ease;
+    inset 0 -4px 6px rgba(0,0,0,0.45);
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .top span.eaten {
@@ -56,36 +58,41 @@ body {
   transform: scale(0.5);
 }
 
-.side {
-  position: absolute;
-  background: #3a160e;
-}
-
+/* FRONT DEPTH */
 .front {
-  height: 18px;
-  width: 100%;
+  position: absolute;
   bottom: -18px;
-  transform: rotateX(-90deg);
+  left: 0;
+  width: 100%;
+  height: 18px;
+  background: #3a160e;
   transform-origin: top;
+  transform: rotateX(-90deg);
+  border-radius: 0 0 14px 14px;
 }
 
+/* RIGHT DEPTH */
 .right {
+  position: absolute;
+  top: 0;
+  right: -18px;
   width: 18px;
   height: 100%;
-  right: -18px;
-  transform: rotateY(90deg);
+  background: #2a0f09;
   transform-origin: left;
+  transform: rotateY(90deg);
+  border-radius: 0 14px 14px 0;
 }
 
-/* ===== 3D HEART ===== */
+/* ===== HEART 3D ===== */
 .heart-3d {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 38px;
   height: 38px;
-  background: radial-gradient(circle at top, #ff8fa3, #ff4d6d);
-  transform: translate(-50%, -50%) rotateZ(45deg) translateZ(30px);
+  background: radial-gradient(circle at top, #ff9bb0, #ff4d6d);
+  transform: translate(-50%, -50%) rotate(45deg) translateZ(28px);
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(255,100,130,0.6);
 }
@@ -106,8 +113,8 @@ body {
 }
 
 .heart-3d::after {
-  left: -18px;
   top: 0;
+  left: -18px;
 }
 
 .pop {
@@ -115,14 +122,21 @@ body {
 }
 
 @keyframes pop {
-  0% { transform: translate(-50%, -50%) rotateZ(45deg) scale(1); }
-  50% { transform: translate(-50%, -50%) rotateZ(45deg) scale(1.6); }
-  100% { transform: translate(-50%, -50%) rotateZ(45deg) scale(0); }
+  0% {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.6);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(45deg) scale(0);
+  }
 }
 
 /* ===== TEXT ===== */
 #hint {
   margin-top: 18px;
+  font-size: 14px;
   opacity: 0.85;
 }
 
@@ -136,6 +150,12 @@ body {
 }
 
 @keyframes fade {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
