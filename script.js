@@ -1,22 +1,24 @@
 const chocolate = document.getElementById("chocolate");
+const blocks = document.querySelectorAll(".blocks span");
 const heart = document.getElementById("heart");
 const message = document.getElementById("message");
 const hint = document.getElementById("hint");
 
-let bites = 0;
-const maxBites = 5;
+let index = 0;
 
 chocolate.addEventListener("click", () => {
-  bites++;
 
-  if (bites < maxBites) {
-    chocolate.classList.add("bite");
-    setTimeout(() => chocolate.classList.remove("bite"), 200);
+  if (index < blocks.length) {
+    blocks[index].classList.add("eaten");
+    index++;
+
+    // chocolate shrink effect
+    chocolate.style.transform = `scale(${1 - index * 0.05})`;
   }
 
-  if (bites === maxBites) {
-    heart.classList.add("pop");
+  if (index === blocks.length) {
     hint.style.display = "none";
+    heart.classList.add("pop");
 
     setTimeout(() => {
       chocolate.style.display = "none";
